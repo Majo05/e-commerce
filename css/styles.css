@@ -1,28 +1,17 @@
 /* Kitchening
 ============================ */
 
-/* Resets */
-*{
-  box-sizing: border-box;
-}
-ul, ol{
-  padding: 0;
-}
-li {
-  list-style-type: none;
-}
+@import 'reset.css';
 
-a{
-  text-decoration: none;
-}
 
 /* Generales */
 body {
   font-family: sans-serif;
 }
 .container{
-
   margin:0 auto;
+  /* quizas hay un conflicto aqui */
+  margin-top: 20px;
 }
 p {
   font-size: 20px;
@@ -38,6 +27,11 @@ p{
   font-size: 16px;
   margin-left: 20px;
   margin-right: 10px;
+}
+
+/* esto es de preguntas frecuentes */
+.card{
+    text-decoration: none;
 }
 
 /* Cabecera */
