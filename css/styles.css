@@ -1,0 +1,70 @@
+/* Kitchening
+============================ */
+
+/* Resets */
+*{
+  box-sizing: border-box;
+}
+ul, ol{
+  padding: 0;
+}
+li {
+  list-style-type: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* Generales */
+body {
+  font-family: sans-serif;
+}
+.container{
+
+  margin:0 auto;
+}
+p {
+  font-size: 20px;
+  color: #666;
+}
+
+h4{
+  text-align: center;
+  margin-top: 40px;
+}
+
+p{
+  font-size: 16px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+/* Cabecera */
+.logo{
+  width: 35%;
+}
+
+.carousel1{
+  margin-top: 100px;
+}
+
+.nav-contenido{
+  font-size: 14px;
+}
+/* Banner */
+
+.oferta-mes{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.descripcion-carousel{
+  text-align: center;
+  margin-top: 70px;
+}
+
+.btn{
+  margin-top: 15px;
+}
