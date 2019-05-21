@@ -1,0 +1,45 @@
+.context-dark, .bg-gray-dark, .bg-primary {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+    color: #ffffff;
+}
+
+.section{
+  margin-top: 25px;
+}
+
+.social-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    padding: 23px;
+    font: 900 13px/1 "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 4px;
+}
+
+.col {
+width: 15%;
+    float: right;
+    align-items: center;
+
+}
+
+.padre{
+  overflow: hidden;
+}
+
+.Mensaje{
+  float: left;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: bolder;
+  padding-left: 10px;
+  margin-top: 30px;
+  color: white;
+  width: 55%;
+}
