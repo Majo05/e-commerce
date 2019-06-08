@@ -28,13 +28,13 @@
         		        <a class="nav-link" href="#">Home<span class="sr-only"></span></a>
         		      </li>
         		      <li class="nav-item">
-        		        <a class="nav-link" href="register.html">Registro</a>
+        		        <a class="nav-link" href="register.php">Registro</a>
         		      </li>
         		      <li class="nav-item">
-        		        <a class="nav-link" href="login.html">Login</a>
+        		        <a class="nav-link" href="login.php">Login</a>
         		      </li>
         		      <li class="nav-item">
-        		        <a class="nav-link" href="frecuentes.html">FAQ</a>
+        		        <a class="nav-link" href="frecuentes.php">FAQ</a>
         		      </li>
         		    </ul>
         		  </div>
@@ -47,7 +47,7 @@
         		<div class="register-info-box">
         			<h2 class="login-reg">No tienes una cuenta?</h2>
         			<p class="login-reg">Registrate aquí!</p>
-        			<input class="login-botonReg" type="button" onclick="window.open('register.html')" value="Registrarse">
+        			<input class="login-botonReg" type="button" onclick="window.open('register.php')" value="Registrarse">
         		</div>
 
         		<div class="white-panel">

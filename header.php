@@ -25,13 +25,13 @@
             <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Registro</a>
+            <a class="nav-link" href="registro.php">Registro</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="frecuentes.html">Login</a>
+            <a class="nav-link" href="login.php">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="frecuentes.html" tabindex="-1" aria-disabled="true">FAQ</a>
+            <a class="nav-link disabled" href="frecuentes.php" tabindex="-1" aria-disabled="true">FAQ</a>
           </li>
         </ul>
       </div>

@@ -27,13 +27,13 @@
 		        <a class="nav-link" href="#">Home<span class="sr-only"></span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="register.html">Registro</a>
+		        <a class="nav-link" href="register.php">Registro</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="login.html">Login</a>
+		        <a class="nav-link" href="login.php">Login</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="frecuentes.html">FAQ</a>
+		        <a class="nav-link" href="frecuentes.php">FAQ</a>
 		      </li>
 		    </ul>
 		  </div>
