@@ -1,3 +1,33 @@
+<?php
+require_once("helpers.php");
+require_once("controladores/funciones.php");
+if($_POST){
+  $errores = validar($_POST, $_FILES);
+  if(count($errores)== 0){
+    $avatar = armarAvatar($_FILES);
+    $usuario = armarUsuario($_POST, $avatar);
+    guardarUsuario($usuario);
+    header("location: login.php");
+    
+  
+    exit;
+
+  }
+
+  /*<?php if(count($errores)== 0) :?>
+  <div class="alert alert-success">
+  <span> 
+       <h6>Bienvenidx <?$_POST["name"]?></h6>
+  </span>
+  </div> 
+<?php endif; ?> 
+*/
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,28 +72,59 @@
             <br>
             <br>
     <div class="container">
+          
+    
             <h1>Registro</h1>
 
-    <form>
+    <form action="" method="POST" enctype= "multipart/form-data">
         <div class="form-group">
             <label for="exampleInputName">Nombre y Apellido</label>
-            <input type="name" class="form-control" id="exampleInputName" aria-describedby="NombreyApellido" 
-            placeholder="Escribe tu nombre y apellido" required>
+                      
+            <input name="nombre" type="text" class="form-control" id="exampleInputName" aria-describedby="NombreyApellido" 
+            placeholder="Escribe tu nombre y apellido" value="<?= isset($errores["nombre"])? "": persistir("nombre") ?>">
+            <span><?= isset($errores["nombre"])? $errores["nombre"] : "";?></span>
             <small id="NombreyApellido" class="form-text text-muted"></small> 
+            
         </div>   
         <div class="form-group">
             <label for="exampleInputEmail1">Correo Electronico</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
-            placeholder="Escribe tu email"required>
+            <input name="email" type="email" value="<?= isset($errores["email"])? "": persistir("email") ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+            placeholder="Escribe tu email">
+            <span><?= isset($errores["email"])? $errores["email"] : "";?></span>
             <small id="emailHelp" class="form-text text-muted"></small> 
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required> 
+            <input name="password" type="password"  class="form-control" id="exampleInputPassword1" placeholder="Contraseña"> 
+            <span><?= isset($errores["password"])? $errores["password"] : "";?></span>
         </div>
-            <button type="submit" class="btn btn-primary">Registrar</button>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input name="repassword" type="password"  class="form-control" id="exampleInputPassword1" placeholder="Reescriba su contraseña"> 
+            <span><?= isset($errores["repassword"])? $errores["repassword"] : "";?></span>
+        </div>
         
+        <input  type="file" name="avatar" value=""/>
+        <span><?= isset($errores["avatar"])? $errores["avatar"] : "";?></span>
+        <br>
+      
+
+            <button type="submit" class="btn btn-primary">Registrar</button>
+            <?php if(!isset($errores)) :?>
+         
+            <div class="alert alert-success">
+              
+                  <h6>Bienvenido</h6>
+               
+            
+            </div>
+           
+
+      <?php endif; ?>
     </form>
+
+     
+    
 </div>
 <br>
 <br>
