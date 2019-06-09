@@ -1,28 +1,15 @@
 <?php
 require_once("helpers.php");
 require_once("controladores/funciones.php");
+$usuarioRegistrado = false;
 if($_POST){
   $errores = validar($_POST, $_FILES);
   if(count($errores)== 0){
     $avatar = armarAvatar($_FILES);
     $usuario = armarUsuario($_POST, $avatar);
     guardarUsuario($usuario);
-    header("location: login.php");
-    
-  
-    exit;
-
+    $usuarioRegistrado = true;
   }
-
-  /*<?php if(count($errores)== 0) :?>
-  <div class="alert alert-success">
-  <span> 
-       <h6>Bienvenidx <?$_POST["name"]?></h6>
-  </span>
-  </div> 
-<?php endif; ?> 
-*/
-
 }
 
 ?>
@@ -42,40 +29,20 @@ if($_POST){
     <title>Registrate</title>
 </head>
 <body>
-
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-                <a class="navbar-brand" href="#"><img src="images/logoDH860-01.png" class="logo"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav nav-contenido ml-auto"><!-- ml-auto genera margen izquierdo HASTA DONDE PUEDA -->
-                    <li class="nav-item active">
-                      <a class="nav-link" href="home.php">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#">Registro</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="frecuentes.php">Login</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" href="frecuentes.php" tabindex="-1" aria-disabled="true">FAQ</a>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-          
-            </header>
-            <br>
-            <br>
-            <br>
-            <br>
-    <div class="container">
+    <?php require("header.php"); ?>
+    <br><br><br><br>
+    <div class="container min-height" >
           
     
             <h1>Registro</h1>
-
+<?php if ($usuarioRegistrado) :?>
+  <div class="mt-5 pt-5 pb-5 mb-5 text-center fondo-mensaje" role="alert">
+    Felicidades, tu cuenta se ha registrado con exito.
+    <br>
+    
+    Para comenzar, <a href="login.php">inicia sesión</a>
+  </div>
+<?php else: ?> 
     <form action="" method="POST" enctype= "multipart/form-data">
         <div class="form-group">
             <label for="exampleInputName">Nombre y Apellido</label>
@@ -110,19 +77,9 @@ if($_POST){
       
 
             <button type="submit" class="btn btn-primary">Registrar</button>
-            <?php if(!isset($errores)) :?>
-         
-            <div class="alert alert-success">
-              
-                  <h6>Bienvenido</h6>
-               
-            
-            </div>
-           
-
-      <?php endif; ?>
+      
     </form>
-
+<?php endif; ?>
      
     
 </div>

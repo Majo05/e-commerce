@@ -16,51 +16,21 @@
 </head>
 
 <body>
-
-  <header style="margin-bottom:15px;">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <a class="navbar-brand" href="#"><img src="images/logoDH860-01.png" class="logo"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav nav-contenido ml-auto">
-          <!-- ml-auto genera margen izquierdo HASTA DONDE PUEDA -->
-          <li class="nav-item">
-            <a class="nav-link" href="home.php">Home<span class="sr-only"></span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="register.php">Registro</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.php">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="frecuentes.php">FAQ</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-  </header>
-
-
-  <h1 style="margin-top:65px; margin-left: 90px;">Preguntas Frecuentes</h1>
+  <?php require("header.php"); ?>
   <div class="container">
+    <h1 style="margin-top:65px;">Preguntas Frecuentes</h1>
     <div id="accordion">
       <div class="card">
         <div class="card-header" id="headingOne">
           <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
               aria-controls="collapseOne">
               ¿Como comprar en Deco House 860?
             </button>
           </h5>
         </div>
 
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
             Comprar en Deco House 860 es muy fácil y seguro. A continuación te brindamos algunos datos importantes que
             pueden ayudarte al momento de realizar tu compra.

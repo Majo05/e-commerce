@@ -13,6 +13,10 @@ body {
   /* quizas hay un conflicto aqui */
   margin-top: 20px;
 }
+.min-height{
+  min-height: 400px;
+}
+
 p {
   font-size: 20px;
   color: #666;
@@ -157,6 +161,14 @@ h4{
 min-height: 430px;
 }
 
+.fondo-mensaje {
+  background-color: rgba(255, 116, 35, 0.9);
+  color:white;
+}
+.fondo-mensaje a {
+  color:white;
+  text-decoration: underline;
+}
 @media (min-width:414px) {
     .descripcion-carousel{
         margin-top: 50px;

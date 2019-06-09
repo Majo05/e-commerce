@@ -43,8 +43,8 @@ function validar($datos,$bandera){
             $errores["repassword"]= "Las contraseñas deben coincidir";    
         }
     }
-    
-    if(isset($_FILES)){
+
+    if(isset($_FILES) && $_FILES["avatar"]["error"]!=4){
         
         $avatar = $_FILES["avatar"]["name"];
         $ext = pathinfo($avatar,PATHINFO_EXTENSION);
