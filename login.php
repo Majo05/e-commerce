@@ -1,34 +1,87 @@
-  </<!DOCTYPE html>
-  <html lang="en" dir="ltr">
-    <head>
-      <meta charset="utf-8">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link rel="stylesheet" href="css/styles.css">
-      <link rel="stylesheet" href="css/login_css.css">
-      <link rel="stylesheet" href="css/styles.css">
-      <link rel="stylesheet" href="css/footer_css.css">
-  		<title>DECO HOUSE 860</title>
-      <title></title>
-    </head>
-    <body>
-  		<?php require("header.php"); ?>
-        <div class="login-reg-panel">
-        		<div class="register-info-box">
-        			<h2 class="login-reg">No tienes una cuenta?</h2>
-        			<p class="login-reg">Registrate aquí!</p>
-        			<input class="login-botonReg" type="button" onclick="window.open('register.php')" value="Registrarse">
-        		</div>
+<?php
+include_once("controladores/funciones.php");
+require_once("helpers.php");
 
-        		<div class="white-panel">
-        			<div class="login-show">
-        				<h2 class="login-title">LOGIN</h2>
-        				<input class="login-campos" type="text" placeholder="Email">
-        				<input class="login-campos" type="password" placeholder="Password">
-        				<input class="login-boton" type="button" value="Login">
-        				<a class= "login-msj" href="">¿Olvidaste tu contraseña?</a>
-        			</div>
-        		</div>
-        	</div>
-    </body>
-  </html>
+if($_POST){
+
+  $errores= validarLogin($_POST);
+  if(count($errores)==0){
+    echo "no tiene error";
+    $usuario = buscarPorEmail($_POST["email"]);
+    echo $usuario;
+    if($usuario == null){
+      $errores["email"]="Usuario no existe";
+    }else{
+      if(password_verify($_POST["password"],$usuario["password"])===false){
+        $errores["password"]="Error en los datos verifique";
+      }else{
+        seteoUsuario($usuario,$_POST);
+        if(validarAcceso()){
+          header("location: home.php");
+          exit;
+        }else{
+          header("location: register.php");
+          exit;
+        }
+      }
+    }
+  }
+
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <link rel="stylesheet" href="css/login_css.css">
+  <title>Login</title>
+</head>
+
+<body>
+  	<?php require("header.php"); ?>
+
+  <!--<div class="container">-->
+    <?php
+      if(isset($errores)):?>
+        <ul class="alert alert-danger">
+          <?php
+          foreach ($errores as $key => $value) :?>
+            <li> <?=$value;?> </li>
+            <?php endforeach;?>
+        </ul>
+      <?php endif;?>
+
+      <div class="login-reg-panel">
+
+          <div class="register-info-box">
+            <h2 class="login-reg">No tienes una cuenta?</h2>
+            <p class="login-reg">Registrate aquí!</p>
+            <input class="login-botonReg" type="button" onclick="window.open('register.php')" value="Registrarse">
+          </div>
+
+          <div class="white-panel">
+            <div class="login-show">
+              <h2 class="login-title">LOGIN</h2>
+                <form action="" method="POST"   >
+
+                  <input class="login-campos" name="email" type="text" id="email"   value="<?=isset($errores["email"])? "":persistir("email") ;?>" placeholder="Correo electrónico"/>
+                  <input class="login-campos" name="password" type="password" id="password"  value="" placeholder="Contraseña..." />
+
+                  <input name="recordar" type="checkbox" id="recordarme" value="recordar"/>
+                  <label class = "login-recu">Recuérdarme </label>
+                  <a class= "login-msj" href="olvidePassword.php">¿Olvidaste tu contraseña?</a>
+
+                  <button class="login-boton" type="submit">LOGIN</button>
+                </form>
+        </div>
+       </div>
+
+    <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </div> -->
+  <!--</div>-->
+</body>
+
+</html>

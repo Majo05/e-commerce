@@ -4,7 +4,7 @@ require_once("helpers.php");
 function validar($datos,$bandera){
 
     $errores = [];
-   
+
     if(isset($datos["nombre"])){
         $nombre = trim($datos["nombre"]);
         if(empty($nombre)){
@@ -13,17 +13,17 @@ function validar($datos,$bandera){
     }
     if(isset($datos["email"])){
         $email = trim($datos["email"]);
-        
+
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
-          $errores["email"]="El email no es válido";      
+          $errores["email"]="El email no es válido";
         } else{
             $emailExiste = buscarPorEmail($_POST["email"]);
             if ($emailExiste != null){
                 $errores["email"] = "Ese correo ya está registrado.";
             }
         }
-        
-          
+
+
         }
 
     $password = trim($datos["password"]);
@@ -40,12 +40,12 @@ function validar($datos,$bandera){
             $errores["repassword"]= "El campo no debe estar vacio";
         }
         if($password != $repassword){
-            $errores["repassword"]= "Las contraseñas deben coincidir";    
+            $errores["repassword"]= "Las contraseñas deben coincidir";
         }
     }
 
     if(isset($_FILES) && $_FILES["avatar"]["error"]!=4){
-        
+
         $avatar = $_FILES["avatar"]["name"];
         $ext = pathinfo($avatar,PATHINFO_EXTENSION);
         if($_FILES["avatar"]["error"]!=0){
@@ -53,11 +53,29 @@ function validar($datos,$bandera){
         }else if($ext != "jpg" && $ext != "jpeg" && $ext != "png"){
             $errores["avatar"] = "La extensión debe ser PNG, JPEG ó JPG";
         }
-        
+
     }
-    
-    
     return $errores;
+}
+
+function validarLogin($datos){
+
+    $errores = [];
+//  if($bandera == "login"){
+    if(isset($datos["email"])){
+    $email = trim($datos["email"]);
+    if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+      $errores["email"]="El email no es válido";
+      }
+    }
+    $password = trim($datos["password"]);
+    if(isset($datos["password"])){
+        if(empty($password)){
+            $errores["password"] = "El campo no puede estar vacio";
+        }
+      }
+  //  }
+  return $errores;
 }
 
 function armarAvatar($imagen){
@@ -89,11 +107,12 @@ function guardarUsuario($usuario){
     $json = json_encode($usuario);
     file_put_contents("usuarios.json",$json.PHP_EOL,FILE_APPEND);
 }
+
 function buscarPorEmail($email){
     $usuarios = abrirBaseJSON("usuarios.json");
-    
+
     foreach ($usuarios as $key => $value) {
-        
+
         if($email == $value["email"]){
             return $value;
         }
@@ -115,7 +134,7 @@ function abrirBaseJSON($archivo){
 }
 
 function seteoUsuario($usuario,$datos){
-   
+
     $_SESSION["nombre"] = $usuario["nombre"];
     $_SESSION["email"]=$usuario["email"];
     $_SESSION["avatar"]=$usuario["avatar"];
@@ -124,7 +143,7 @@ function seteoUsuario($usuario,$datos){
         setcookie("email",$datos["email"],time()+3600);
         setcookie("password",$datos["password"],time()+3600);
     }
-    
+
 }
 
 function validarAcceso(){
@@ -138,3 +157,18 @@ function validarAcceso(){
         return false;
     }
 }
+
+function armarRegistroOlvide($datos){
+    $usuarios = abrirBaseJSON("usuarios.json");
+
+    foreach ($usuarios as $key=>$usuario) {
+
+        if($datos["email"]==$usuario["email"]){
+            //Esta línea se las comente para que a futuro puedan probar si la clave nueva la van a grabar coorectamente, la idea es verla antes de hashearla.
+            //$usuario["password"]= $datos["password"];
+            $usuario["password"]= password_hash($datos["password"],PASSWORD_DEFAULT);
+            $usuarios[$key] = $usuario;
+        }
+        $usuarios[$key] = $usuario;
+    }
+  }
