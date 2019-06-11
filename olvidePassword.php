@@ -11,7 +11,7 @@ if($_POST){
     }else{
         $registro = armarRegistroOlvide($_POST);
           $cambioExitoso = true;
-          exit;
+          //exit;
     }
   }
 }
@@ -51,20 +51,20 @@ if($_POST){
                 </div>
               <?php else: ?>
 
-          <form action="" method="POST" enctype= "multipart/form-data"  >
+                <form action="" method="POST" enctype= "multipart/form-data"  >
 
-            <input class="login-campos" name="email" type="email" id="email" value="<?=isset($errores["email"])? "":persistir("email") ;?>" placeholder="Correo electrónico"/>
-            <br>
+                  <input class="login-campos" name="email" type="email" id="email" value="<?=isset($errores["email"])? "":persistir("email") ;?>" placeholder="Correo electrónico"/>
+                  <br>
 
-            <input class="login-campos" name="password" type="password" id="password" value="" placeholder="Nueva Contraseña" />
-            <br>
+                  <input class="login-campos" name="password" type="password" id="password" value="" placeholder="Nueva Contraseña" />
+                  <br>
 
-            <input class="login-campos" name="repassword" type="password" id="repassword" value="" placeholder="Confirmar nueva contraseña" />
-            <br>
-            <button class="login-boton" type="submit">Confirmar</button>
-          </form>
-          <?php endif; ?>
-        </div>
+                  <input class="login-campos" name="repassword" type="password" id="repassword" value="" placeholder="Confirmar nueva contraseña" />
+                  <br>
+                  <button class="login-boton" type="submit">Confirmar</button>
+                </form>
+              <?php endif; ?>
+          </div>
         </div>
   </div>
 </body>

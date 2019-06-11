@@ -122,6 +122,7 @@ function buscarPorEmail($email){
 
 function abrirBaseJSON($archivo){
     if(file_exists($archivo)){
+        $arrayUsuarios = [];
         $json = file_get_contents($archivo);
         $json = explode(PHP_EOL,$json);
         array_pop($json);

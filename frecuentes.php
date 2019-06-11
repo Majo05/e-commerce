@@ -108,7 +108,7 @@
             <br>
             <br>
             ¿ES SEGURO COMPRAR EN DECO HOME?
-          
+
             <br>
             Para garantizar la seguridad en los pagos usamos la tecnología SPS de DECIDIR, perteneciente a Equifax Veraz
             y Mercadopago.
@@ -122,17 +122,10 @@
 
     </div>
   </div>
-  <footer class="footer-classic context-dark bg-image" style="background: #2d3246;">
-    <div class="padre">
-      <div class=""><span class="Mensaje">La mejor solución para tu diseño interior DecoHome860.</span></div>
-      <div class="col"><a class="social-inner" href="#"><img src="images/facebook.png"><span>@DecoHome860</span></a>
-      </div>
-      <div class="col"><a class="social-inner" href="#"><img src="images/instagram.png"><span>@DecoHome860</span></a>
-      </div>
-      <div class="col"><a class="social-inner" href="#"><img src="images/twitter.png"><span>@DecoHome860</span></a>
-      </div>
-    </div>
-  </footer>
+
+  <?php require("footer.php"); ?>
+
+
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>

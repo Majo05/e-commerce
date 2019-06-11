@@ -37,7 +37,7 @@ if($_POST){
             <h1>Registro</h1>
 <?php if ($usuarioRegistrado) :?>
   <div class="mt-5 pt-5 pb-5 mb-5 text-center fondo-mensaje" role="alert">
-    Felicidades, tu cuenta se ha registrado con exito.
+    <strong>Felicidades!</strong> Tu cuenta se ha registrado con éxito.
     <br>
 
     Para comenzar, <a href="login.php">inicia sesión</a>
@@ -49,7 +49,7 @@ if($_POST){
 
             <input name="nombre" type="text" class="form-control" id="exampleInputName" aria-describedby="NombreyApellido"
             placeholder="Escribe tu nombre y apellido" value="<?= isset($errores["nombre"])? "": persistir("nombre") ?>">
-            <span><?= isset($errores["nombre"])? $errores["nombre"] : "";?></span>
+            <small class="form-text text-danger"><?= isset($errores["nombre"])? $errores["nombre"] : "";?></small>
             <small id="NombreyApellido" class="form-text text-muted"></small>
 
         </div>
@@ -57,22 +57,22 @@ if($_POST){
             <label for="exampleInputEmail1">Correo Electronico</label>
             <input name="email" type="email" value="<?= isset($errores["email"])? "": persistir("email") ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
             placeholder="Escribe tu email">
-            <span><?= isset($errores["email"])? $errores["email"] : "";?></span>
+            <small class="form-text text-danger"><?= isset($errores["email"])? $errores["email"] : "";?></small>
             <small id="emailHelp" class="form-text text-muted"></small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
             <input name="password" type="password"  class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
-            <span><?= isset($errores["password"])? $errores["password"] : "";?></span>
+            <small class="form-text text-danger"><?= isset($errores["password"])? $errores["password"] : "";?></small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
             <input name="repassword" type="password"  class="form-control" id="exampleInputPassword1" placeholder="Reescriba su contraseña">
-            <span><?= isset($errores["repassword"])? $errores["repassword"] : "";?></span>
+            <small class="form-text text-danger"><?= isset($errores["repassword"])? $errores["repassword"] : "";?></small>
         </div>
 
         <input  type="file" name="avatar" value=""/>
-        <span><?= isset($errores["avatar"])? $errores["avatar"] : "";?></span>
+        <small class="form-text text-danger"><?= isset($errores["avatar"])? $errores["avatar"] : "";?></small>
         <br>
 
 
@@ -87,13 +87,11 @@ if($_POST){
 <br>
 <br>
 
-<footer class="section footer-classic context-dark bg-image" style="background: #2d3246;">
-        <div class="padre">
-            <div class=""><span class="Mensaje">La mejor solución para tu diseño interior DecoHome860.</span></div>
-            <div class="col"><a class="social-inner" href="#"><img src="images/facebook.png"><span>@DecoHome860</span></a></div>
-            <div class="col"><a class="social-inner" href="#"><img src="images/instagram.png"><span>@DecoHome860</span></a></div>
-            <div class="col"><a class="social-inner" href="#"><img src="images/twitter.png"><span>@DecoHome860</span></a></div>
-        </div>
-</footer>
+<?php require("footer.php"); ?>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
