@@ -1,3 +1,11 @@
+<?php
+    require_once('autoload.php');
+
+    $preguntas = Consulta::listar('faqs', $pdo);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,10 +31,12 @@
       <div class="card">
         <div class="card-header" id="headingOne">
           <h5 class="mb-0">
+            <?php foreach($preguntas as $pregunta): ?>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
               aria-controls="collapseOne">
-              ¿Como comprar en Deco House 860?
+              <?= $pregunta['question']?>
             </button>
+            <?php endforeach;?>
           </h5>
         </div>
 
