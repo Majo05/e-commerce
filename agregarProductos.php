@@ -3,9 +3,8 @@
 
     $productos = Consulta::listar('productos', $pdo);
 
-    if($_POST) {
+    if($_POST){
        
-
         $producto = new Producto($_POST['name'], $_POST['type'], $_POST['price'], $_POST['stock']);
 
         Consulta::insertarProducto($producto, $pdo);

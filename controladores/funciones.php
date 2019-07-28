@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("helpers.php");
-function validar($datos,$bandera){
+function validar($datos)/*COMPLETAR $BANDERA*/{
 
     $errores = [];
 
@@ -11,20 +11,54 @@ function validar($datos,$bandera){
             $errores["nombre"]="El campo no puede estar vacio";
         }
     }
+    if(isset($datos["apellido"])){
+        $apellido = trim($datos["apellido"]);
+        if(empty($apellido)){
+            $errores["apellido"]="El campo no puede estar vacio";
+        }
+    }
     if(isset($datos["email"])){
         $email = trim($datos["email"]);
 
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
           $errores["email"]="El email no es válido";
-        } else{
+        } 
+        /*else{
             $emailExiste = buscarPorEmail($_POST["email"]);
             if ($emailExiste != null){
                 $errores["email"] = "Ese correo ya está registrado.";
             }
         }
-
+*/
 
         }
+
+        if(isset($datos["doctype_id"])){
+            if($datos["doctype_id"] == NULL){
+                $errores["doctype_id"]="Por favor elija una opción";
+        }
+    }
+
+    if(isset($datos["nroDoc"])){
+        $nroDoc = trim($datos["nroDoc"]);
+        if(empty($nroDoc)){
+            $errores["nroDoc"]="El campo no puede estar vacio";
+        }
+    }
+
+    if(isset($datos["phone"])){
+        $phone = trim($datos["phone"]);
+        if(empty($phone)){
+            $errores["phone"]="El campo no puede estar vacio";
+        }
+    }
+
+    if(isset($datos["address"])){
+        $address = trim($datos["address"]);
+        if(empty($address)){
+            $errores["address"]="El campo no puede estar vacio";
+        }
+    }
 
     $password = trim($datos["password"]);
     if(isset($datos["password"])){
@@ -44,6 +78,8 @@ function validar($datos,$bandera){
         }
     }
 
+    /*
+
     if(isset($_FILES) && $_FILES["avatar"]["error"]!=4){
 
         $avatar = $_FILES["avatar"]["name"];
@@ -56,6 +92,7 @@ function validar($datos,$bandera){
 
     }
     return $errores;
+*/
 }
 
 function validarLogin($datos){
@@ -108,6 +145,8 @@ function guardarUsuario($usuario){
     file_put_contents("usuarios.json",$json.PHP_EOL,FILE_APPEND);
 }
 
+
+/*
 function buscarPorEmail($email){
     $usuarios = abrirBaseJSON("usuarios.json");
 
@@ -118,7 +157,7 @@ function buscarPorEmail($email){
         }
     }
     return null;
-}
+}*/
 
 function abrirBaseJSON($archivo){
     if(file_exists($archivo)){

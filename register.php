@@ -1,19 +1,24 @@
 <?php
 require_once("helpers.php");
 require_once("controladores/funciones.php");
+require_once("autoload.php");
 $usuarioRegistrado = false;
+
+$tipoDoc = Consulta::listar('doctype', $pdo);
+
 if($_POST){
-  $errores = validar($_POST, $_FILES);
+  $errores = validar($_POST);
+  
+  
   if(count($errores)== 0){
-    $avatar = armarAvatar($_FILES);
-    $usuario = armarUsuario($_POST, $avatar);
-    guardarUsuario($usuario);
+    $usuario = new Usuario($_POST['name'], $_POST['lastname'], $_POST['email'], $_POST['password'], $_POST['type'], $_POST['nroDoc'], $_POST['phone'], $_POST['address']);
+      Consulta::guardarUsuario($usuario, $pdo);
+    
     $usuarioRegistrado = true;
   }
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,12 +50,21 @@ if($_POST){
 <?php else: ?>
     <form action="" method="POST" enctype= "multipart/form-data">
         <div class="form-group">
-            <label for="exampleInputName">Nombre y Apellido</label>
+            <label for="exampleInputName">Nombre</label>
 
-            <input name="nombre" type="text" class="form-control" id="exampleInputName" aria-describedby="NombreyApellido"
-            placeholder="Escribe tu nombre y apellido" value="<?= isset($errores["nombre"])? "": persistir("nombre") ?>">
-            <small class="form-text text-danger"><?= isset($errores["nombre"])? $errores["nombre"] : "";?></small>
-            <small id="NombreyApellido" class="form-text text-muted"></small>
+            <input name="name" type="text" class="form-control" id="exampleInputName" aria-describedby="name"
+            placeholder="Escribe tu nombre" value="<?= isset($errores["name"])? "": persistir("name") ?>">
+            <small class="form-text text-danger"><?= isset($errores["name"])? $errores["name"] : "";?></small>
+            <small id="name" class="form-text text-muted"></small>
+
+        </div>
+        <div class="form-group">
+            <label for="exampleInputName">Apellido</label>
+
+            <input name="lastname" type="text" class="form-control" id="exampleInputName" aria-describedby="lastname"
+            placeholder="Escribe tu apellido" value="<?= isset($errores["lastname"])? "": persistir("lastname") ?>">
+            <small class="form-text text-danger"><?= isset($errores["lastname"])? $errores["lastname"] : "";?></small>
+            <small id="lastname" class="form-text text-muted"></small>
 
         </div>
         <div class="form-group">
@@ -60,20 +74,61 @@ if($_POST){
             <small class="form-text text-danger"><?= isset($errores["email"])? $errores["email"] : "";?></small>
             <small id="emailHelp" class="form-text text-muted"></small>
         </div>
+
+        <div class="form-group">
+                        <label for="nombre">Tipo Documento</label>
+                        <select class="form-control" name="doctype_id" id="doctype_id">
+                            <option value="" selected>Seleccione Categoria</option>
+                            <?php foreach($tipoDoc as $documento): ?>
+                            <option value="<?= $documento['id']?>"><?= $documento['type']?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <small class="form-text text-danger"><?= isset($errores["doctype_id"])? $errores["doctype_id"] : "";?></small>
+            <small id="doctype_id" class="form-text text-muted"></small>
+                    </div>
+
+        <div class="form-group">
+            <label for="exampleInputName">Número de Documento</label>
+
+            <input name="nroDoc" type="text" class="form-control" id="exampleInputName" aria-describedby="nroDoc"
+            placeholder="Escribe tu Numero de Documento" value="<?= isset($errores["nroDoc"])? "": persistir("nroDoc") ?>">
+            <small class="form-text text-danger"><?= isset($errores["nroDoc"])? $errores["nroDoc"] : "";?></small>
+            <small id="nroDoc" class="form-text text-muted"></small>
+
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputName">Telefono</label>
+
+            <input name="phone" type="text" class="form-control" id="exampleInputName" aria-describedby="phone"
+            placeholder="Escribe tu Telefono anteponiendo código de área y sin guiones" value="<?= isset($errores["phone"])? "": persistir("phone") ?>">
+            <small class="form-text text-danger"><?= isset($errores["phone"])? $errores["phone"] : "";?></small>
+            <small id="phone" class="form-text text-muted"></small>
+
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputName">Direccion</label>
+
+            <input name="address" type="text" class="form-control" id="exampleInputName" aria-describedby="address"
+            placeholder="Escribe tu direccion" value="<?= isset($errores["address"])? "": persistir("address") ?>">
+            <small class="form-text text-danger"><?= isset($errores["address"])? $errores["address"] : "";?></small>
+            <small id="address" class="form-text text-muted"></small>
+
+        </div>
+
         <div class="form-group">
             <label for="exampleInputPassword1">Contraseña</label>
             <input name="password" type="password"  class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
             <small class="form-text text-danger"><?= isset($errores["password"])? $errores["password"] : "";?></small>
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Contraseña</label>
+            <label for="exampleInputPassword1">Repetir Contraseña</label>
             <input name="repassword" type="password"  class="form-control" id="exampleInputPassword1" placeholder="Reescriba su contraseña">
             <small class="form-text text-danger"><?= isset($errores["repassword"])? $errores["repassword"] : "";?></small>
         </div>
 
-        <input  type="file" name="avatar" value=""/>
-        <small class="form-text text-danger"><?= isset($errores["avatar"])? $errores["avatar"] : "";?></small>
-        <br>
+      
 
 
             <button type="submit" class="btn btn-primary">Registrar</button>

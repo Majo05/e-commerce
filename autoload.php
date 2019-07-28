@@ -6,6 +6,7 @@ require_once('clases/baseMYSQL.php');
 require_once('clases/consulta.php');
 require_once('clases/producto.php');
 require_once('clases/faq.php');
+require_once('clases/usuario.php');
 
 
 //Declaramoslas  variables - Les recuerdoamos que esto lo pueden hacer ustedes de diversas formas

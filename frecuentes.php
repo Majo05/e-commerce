@@ -30,12 +30,15 @@
     <div id="accordion">
       <div class="card">
         <div class="card-header" id="headingOne">
+          <ul>
           <h5 class="mb-0">
             <?php foreach($preguntas as $pregunta): ?>
+            <li>
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
               aria-controls="collapseOne">
               <?= $pregunta['question']?>
             </button>
+            </li>
             <?php endforeach;?>
           </h5>
         </div>
@@ -56,6 +59,7 @@
           </div>
         </div>
       </div>
+      </ul>
       <div class="card">
         <div class="card-header" id="headingTwo">
           <h5 class="mb-0">
@@ -67,7 +71,7 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
           <div class="card-body">
-            Para registrarte en Dafiti seguí los siguientes pasos:
+            Para registrarte en Deco Home seguí los siguientes pasos:
             <br>
 
              Crea tu cuenta haciendo click aquí
