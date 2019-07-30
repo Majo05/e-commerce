@@ -10,20 +10,19 @@ class Usuario{
     protected $phone;
     protected $address;
     protected $role_id;
-   
 
-    public function __construct($name, $lastname, $email, $password, $avatar, $type, $nroDoc, $phone, $address){
-      
+
+    public function __construct($name, $lastname, $email, $password, $avatar, $type, $nroDoc, $phone, $address, $role_id){
         $this->name = $name;
         $this->lastname = $lastname;
         $this->email = $email;
         $this->password = $password;
-        /*$this->avatar = $avatar;*/
+        $this->avatar = $avatar;
         $this->type = $type;
         $this->nroDoc = $nroDoc;
         $this->phone= $phone;
         $this->address = $address;
-       /* $this->role_id = $role_id;*/
+        $this->role_id = $role_id;
     }
 
     public function getName(){

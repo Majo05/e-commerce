@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("helpers.php");
-function validar($datos)/*COMPLETAR $BANDERA*/{
+function validar($datos, $bandera){
 
     $errores = [];
 
@@ -22,7 +22,7 @@ function validar($datos)/*COMPLETAR $BANDERA*/{
 
         if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
           $errores["email"]="El email no es válido";
-        } 
+        }
         /*else{
             $emailExiste = buscarPorEmail($_POST["email"]);
             if ($emailExiste != null){
@@ -78,8 +78,6 @@ function validar($datos)/*COMPLETAR $BANDERA*/{
         }
     }
 
-    /*
-
     if(isset($_FILES) && $_FILES["avatar"]["error"]!=4){
 
         $avatar = $_FILES["avatar"]["name"];
@@ -92,7 +90,7 @@ function validar($datos)/*COMPLETAR $BANDERA*/{
 
     }
     return $errores;
-*/
+
 }
 
 function validarLogin($datos){
@@ -138,11 +136,6 @@ function armarUsuario($datos,$avatar){
         "perfil"=>1
     ];
     return $usuario;
-}
-
-function guardarUsuario($usuario){
-    $json = json_encode($usuario);
-    file_put_contents("usuarios.json",$json.PHP_EOL,FILE_APPEND);
 }
 
 

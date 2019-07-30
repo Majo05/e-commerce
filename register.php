@@ -7,13 +7,12 @@ $usuarioRegistrado = false;
 $tipoDoc = Consulta::listar('doctype', $pdo);
 
 if($_POST){
-  $errores = validar($_POST);
-  
-  
-  if(count($errores)== 0){
-    $usuario = new Usuario($_POST['name'], $_POST['lastname'], $_POST['email'], $_POST['password'], $_POST['type'], $_POST['nroDoc'], $_POST['phone'], $_POST['address']);
-      Consulta::guardarUsuario($usuario, $pdo);
-    
+  $errores = validar($_POST, $_FILES);
+    if(count($errores)== 0){
+
+    $avatar = armarAvatar($_FILES);
+    $usuario = new Usuario($_POST['name'], $_POST['lastname'], $_POST['email'], $_POST['password'], $avatar, $_POST['type'], $_POST['nroDoc'], $_POST['phone'], $_POST['address'], 0);
+    Consulta::guardarUsuario($usuario, $pdo);
     $usuarioRegistrado = true;
   }
 }
@@ -128,8 +127,15 @@ if($_POST){
             <small class="form-text text-danger"><?= isset($errores["repassword"])? $errores["repassword"] : "";?></small>
         </div>
 
-      
+        <div class="form-group">
+            <label for="exampleInputName">Imagen</label>
 
+            <input name="avatar" type="text" class="form-control" id="exampleInputName" aria-describedby="avatar"
+            placeholder="Selecciona una imagen" value="<?= isset($errores["avatar"])? "": persistir("avatar") ?>">
+            <small class="form-text text-danger"><?= isset($errores["avatar"])? $errores["avatar"] : "";?></small>
+            <small id="avatar" class="form-text text-muted"></small>
+
+        </div>
 
             <button type="submit" class="btn btn-primary">Registrar</button>
 
