@@ -124,6 +124,10 @@ CREATE INDEX `product_category_idx` ON `e-commerce`.`products` (`category_id` AS
 
 SHOW WARNINGS;
 
+/* Adding initial roles */
+INSERT INTO `e-commerce`.`roles` (`id`, `name`) VALUES ('1', 'admin');
+INSERT INTO `e-commerce`.`roles` (`id`, `name`) VALUES ('2', 'user');
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

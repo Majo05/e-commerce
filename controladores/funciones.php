@@ -5,16 +5,16 @@ function validar($datos, $bandera){
 
     $errores = [];
 
-    if(isset($datos["nombre"])){
-        $nombre = trim($datos["nombre"]);
-        if(empty($nombre)){
-            $errores["nombre"]="El campo no puede estar vacio";
+    if(isset($datos["name"])){
+        $name = trim($datos["name"]);
+        if(empty($name)){
+            $errores["name"]="El campo no puede estar vacio";
         }
     }
-    if(isset($datos["apellido"])){
-        $apellido = trim($datos["apellido"]);
-        if(empty($apellido)){
-            $errores["apellido"]="El campo no puede estar vacio";
+    if(isset($datos["lastname"])){
+        $lastname = trim($datos["lastname"]);
+        if(empty($lastname)){
+            $errores["lastname"]="El campo no puede estar vacio";
         }
     }
     if(isset($datos["email"])){
@@ -78,7 +78,7 @@ function validar($datos, $bandera){
         }
     }
 
-    if(isset($_FILES) && $_FILES["avatar"]["error"]!=4){
+    if(isset($_FILES) && isset($_FILES["avatar"]) && $_FILES["avatar"]["error"]!=4){
 
         $avatar = $_FILES["avatar"]["name"];
         $ext = pathinfo($avatar,PATHINFO_EXTENSION);

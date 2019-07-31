@@ -43,10 +43,7 @@ public static function guardarUsuario($usuario, $base){
     $role_id = $usuario->getRole_id();
 
     $stmt = $base->prepare("INSERT INTO users(name, lastname, email, password, avatar, type, nroDoc, phone, address, role_id) VALUES (:name, :lastname, :email, :password, :avatar, :type, :nroDoc, :phone, :address, :role_id)");
-
-    var_dump($stmt);
-    exit;
-
+    
     $stmt->bindParam(':name', $name, PDO::PARAM_STR);
     $stmt->bindParam(':lastname', $lastname, PDO::PARAM_STR);
     $stmt->bindParam(':email', $email, PDO::PARAM_INT);

@@ -4,14 +4,34 @@ require_once("controladores/funciones.php");
 require_once("autoload.php");
 $usuarioRegistrado = false;
 
-$tipoDoc = Consulta::listar('doctype', $pdo);
+$tipoDoc = Array( 
+    Array( 'id' => 1, 'type' => 'DNI'),
+    Array( 'id' => 2, 'type' => 'Pasaporte'),
+    Array( 'id' => 3, 'type' => 'Libreta Civica')
+); 
+///Consulta::listar('doctype', $pdo);
 
 if($_POST){
   $errores = validar($_POST, $_FILES);
+
+  
+  
     if(count($errores)== 0){
 
+    $name = isset($_POST['name']) ? $_POST['name'] : null;
+    $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : null;
+    $email = isset($_POST['email']) ? $_POST['email'] : null;
+    $password = isset($_POST['password']) ? $_POST['password'] : null;
     $avatar = armarAvatar($_FILES);
-    $usuario = new Usuario($_POST['name'], $_POST['lastname'], $_POST['email'], $_POST['password'], $avatar, $_POST['type'], $_POST['nroDoc'], $_POST['phone'], $_POST['address'], 0);
+    $doctype_id = isset($_POST['doctype_id']) ? $_POST['doctype_id'] : null;
+    $nroDoc = isset($_POST['nroDoc']) ? $_POST['nroDoc'] : null;
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : null;
+    $address = isset($_POST['address']) ? $_POST['address'] : null;
+    
+    // Role: user
+    $role_id = 2;
+
+    $usuario = new Usuario($name, $lastname, $email, $password, $avatar, $doctype_id, $nroDoc, $phone, $address, $role_id);
     Consulta::guardarUsuario($usuario, $pdo);
     $usuarioRegistrado = true;
   }
@@ -130,7 +150,7 @@ if($_POST){
         <div class="form-group">
             <label for="exampleInputName">Imagen</label>
 
-            <input name="avatar" type="text" class="form-control" id="exampleInputName" aria-describedby="avatar"
+            <input name="avatar" type="file" class="form-control" id="exampleInputName" aria-describedby="avatar"
             placeholder="Selecciona una imagen" value="<?= isset($errores["avatar"])? "": persistir("avatar") ?>">
             <small class="form-text text-danger"><?= isset($errores["avatar"])? $errores["avatar"] : "";?></small>
             <small id="avatar" class="form-text text-muted"></small>
