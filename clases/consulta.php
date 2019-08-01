@@ -43,10 +43,10 @@ public static function guardarUsuario($usuario, $base){
     $role_id = $usuario->getRole_id();
 
     $stmt = $base->prepare("INSERT INTO users(name, lastname, email, password, avatar, type, nroDoc, phone, address, role_id) VALUES (:name, :lastname, :email, :password, :avatar, :type, :nroDoc, :phone, :address, :role_id)");
-    
+
     $stmt->bindParam(':name', $name, PDO::PARAM_STR);
     $stmt->bindParam(':lastname', $lastname, PDO::PARAM_STR);
-    $stmt->bindParam(':email', $email, PDO::PARAM_INT);
+    $stmt->bindParam(':email', $email, PDO::PARAM_STR);
     $stmt->bindParam(':password', $password, PDO::PARAM_INT);
     $stmt->bindParam(':avatar', $avatar, PDO::PARAM_STR);
     $stmt->bindParam(':type', $type, PDO::PARAM_STR);
@@ -69,6 +69,16 @@ public static function armarAvatar($imagen){
     move_uploaded_file($archivoOrigen,$archivoDestino);
     $avatar = $avatar.".".$ext;
     return $avatar;
+}
+
+static public function buscarPorEmail($email, $tabla, $base){
+    $stmt = $base->prepare('SELECT * FROM ' . $tabla . ' WHERE email = :email');
+     //$stmt = $base->prepare("SELECT * FROM $tabla WHERE email = :email");
+     $stmt->bindParam(':email', $email);
+     $stmt->execute();
+     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+     return $usuario;
+
 }
 
 }

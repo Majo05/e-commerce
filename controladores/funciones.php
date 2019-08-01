@@ -168,7 +168,7 @@ function abrirBaseJSON($archivo){
 
 function seteoUsuario($usuario,$datos){
 
-    $_SESSION["nombre"] = $usuario["nombre"];
+    $_SESSION["nombre"] = $usuario["name"];
     $_SESSION["email"]=$usuario["email"];
     $_SESSION["avatar"]=$usuario["avatar"];
     $_SESSION["perfil"]=$usuario["perfil"];

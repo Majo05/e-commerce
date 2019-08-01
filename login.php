@@ -1,18 +1,22 @@
 <?php
 include_once("controladores/funciones.php");
-require_once("helpers.php");
+require_once("autoload.php");
+//require_once("helpers.php");
 
 if($_POST){
 
   $errores= validarLogin($_POST);
   if(count($errores)==0){
     echo "no tiene error";
-    $usuario = buscarPorEmail($_POST["email"]);
-    echo $usuario;
-    if($usuario == null){
+    $usuario = Consulta::buscarPorEmail($_POST["email"],'users', $pdo);
+  //  $usuario = buscarPorEmail($_POST["email"]);
+  echo $_POST["password"];
+    echo "desde login ".$usuario["password"];
+    if($usuario == false){
       $errores["email"]="Usuario no existe";
     }else{
-      if(password_verify($_POST["password"],$usuario["password"])===false){
+    //  if(password_verify($_POST["password"],$usuario["password"])===false){
+      if($_POST["password"]!==$usuario["password"]){
         $errores["password"]="Error en los datos verifique";
       }else{
         seteoUsuario($usuario,$_POST);
@@ -26,6 +30,35 @@ if($_POST){
       }
     }
   }
+/*
+
+
+  $usuario = new Usuario($_POST["email"],$_POST["password"]);
+      $errores= $validar->validacionLogin($usuario);
+      if(count($errores)==0){
+        $usuarioEncontrado = BaseMYSQL::buscarPorEmail($usuario->getEmail(),$pdo,'users');
+        if($usuarioEncontrado == false){
+          $errores["email"]="Usuario no registrado";
+        }else{
+          if(Autenticador::verificarPassword($usuario->getPassword(),$usuarioEncontrado["password"] )!=true){
+            $errores["password"]="Error en los datos verifique";
+          }else{
+            Autenticador::seteoSesion($usuarioEncontrado);
+            if(isset($_POST["recordar"])){
+              Autenticador::seteoCookie($usuarioEncontrado);
+            }
+            if(Autenticador::validarUsuario()){
+              redirect("perfil.php");
+            }else{
+              redirect("registro.php");
+            }
+          }
+        }
+      }
+
+*/
+
+
 
 }
 ?>

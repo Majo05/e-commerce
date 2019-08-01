@@ -1,5 +1,6 @@
 <?php
 include_once("controladores/funciones.php");
+require_once("autoload.php");
 ?>
 <header>
 
@@ -20,6 +21,7 @@ include_once("controladores/funciones.php");
                 //En el if va la variable con la que identificas si estan logueados
               $logueado = validarAcceso();
                 if($logueado):?>
+              <?php  $usuario = Consulta::buscarPorEmail($_SESSION["email"],'users', $pdo);?>
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav nav-contenido ml-auto"><!-- ml-auto genera margen izquierdo HASTA DONDE PUEDA -->
                 <li class="nav-item">
@@ -32,11 +34,11 @@ include_once("controladores/funciones.php");
                   <a class="nav-link" href="Logout.php">Logout</a>
                 </li>
                 <li class="nav-item">
-                   <span class="nav-link">Hola,<?php $_SESSION["nombre"] ?></span>
+                   <span class="nav-link">Hola,<?php $usuario["name"] ?></span>
                 </li>
                 <li class="nav-item">
-                  <img alt="Brand" src="https://cdn6.aptoide.com/imgs/f/e/c/fec372f7c957ad5393911379e3a7c2a8_icon.png?w=40">
-
+                  <img  src = <?php $_SESSION["avatar"] ?> >
+              <!--    src="https://cdn6.aptoide.com/imgs/f/e/c/fec372f7c957ad5393911379e3a7c2a8_icon.png?w=40"> -->
                 </li>
               </ul>
             </div>

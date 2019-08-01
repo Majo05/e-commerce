@@ -4,18 +4,18 @@ require_once("controladores/funciones.php");
 require_once("autoload.php");
 $usuarioRegistrado = false;
 
-$tipoDoc = Array( 
+$tipoDoc = Array(
     Array( 'id' => 1, 'type' => 'DNI'),
     Array( 'id' => 2, 'type' => 'Pasaporte'),
     Array( 'id' => 3, 'type' => 'Libreta Civica')
-); 
+);
 ///Consulta::listar('doctype', $pdo);
 
 if($_POST){
   $errores = validar($_POST, $_FILES);
 
-  
-  
+
+
     if(count($errores)== 0){
 
     $name = isset($_POST['name']) ? $_POST['name'] : null;
@@ -27,7 +27,7 @@ if($_POST){
     $nroDoc = isset($_POST['nroDoc']) ? $_POST['nroDoc'] : null;
     $phone = isset($_POST['phone']) ? $_POST['phone'] : null;
     $address = isset($_POST['address']) ? $_POST['address'] : null;
-    
+
     // Role: user
     $role_id = 2;
 
@@ -88,10 +88,10 @@ if($_POST){
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Correo Electronico</label>
-            <input name="email" type="email" value="<?= isset($errores["email"])? "": persistir("email") ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <input name="email" type="email" value="<?= isset($errores["email"])? "": persistir("email") ?>" class="form-control" id="exampleInputEmail1" aria-describedby="email"
             placeholder="Escribe tu email">
             <small class="form-text text-danger"><?= isset($errores["email"])? $errores["email"] : "";?></small>
-            <small id="emailHelp" class="form-text text-muted"></small>
+            <small id="email" class="form-text text-muted"></small>
         </div>
 
         <div class="form-group">
